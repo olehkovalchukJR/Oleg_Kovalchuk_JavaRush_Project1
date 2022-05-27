@@ -1,15 +1,21 @@
 package ru.javarush.olegkovalchuk.project1;
+import ru.javarush.olegkovalchuk.files.FileToEncrypt;
 
 import java.util.Scanner;
 
+
 public class Menu {
+    FileToEncrypt fileToEncrypt = new FileToEncrypt();
+    Key key = new Key();
     EncryptText encryptText = new EncryptText();
 
-    public void chose(){
+
+    public void mainMenu(){
         switch (printMainMenu()){
-            case 1 : encryptText.inputParameters();
+            case 1 : optionsForEncryption();
         }
     }
+
 
     public int printMainMenu(){
         //TODO дописать красивый вывод
@@ -21,4 +27,11 @@ public class Menu {
         return scanner.nextInt();
     }
 
+
+    public void optionsForEncryption(){
+        fileToEncrypt.inputFileName();
+        key.inputKey();
+        encryptText.fileEncryption(fileToEncrypt.getFileContent());
+        encryptText.printEncryptedText();
+    }
 }
