@@ -1,45 +1,37 @@
 package ru.javarush.olegkovalchuk.project1;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class EncryptText {
-    private static final char[] ALPHABET = {'а','б','в','г','д','е','ж','з','и','й','к','л','м','н','о',
-            'п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я',' '};
-    private int KEY; //TODO сделать KEY final
+    Alphabet alphabet = new Alphabet();
+    Key key = new Key();
+    public ArrayList<String> listEncryptionResult = new ArrayList<>();
 
 
-    public void inputParameters(){
-        inputFileName();
-        inputKey();
-    }
-
-    private Path inputFileName(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите название файла: ");
-        String fileName = scanner.nextLine();
-        return Path.of(fileName).toAbsolutePath();
-        //TODO: сделать проверку файла
-        // TODO: если файла не существует, вывести ошибку
-    }
-
-    private void inputKey(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите ключ: ");
-        KEY = scanner.nextInt();
-        //TODO дописать проверку ключа (от 1 до 32)
-    }
-
-    private List<String> textToEncrypt(){
-        //TODO переделать этот метод
-        try {
-            return Files.readAllLines(inputFileName());
-        } catch (IOException e) {
-            e.printStackTrace();
+    public List<String> fileEncryption(List<String> list){
+        for (int k = 0; k < list.size(); k++) {
+            StringBuilder builder = new StringBuilder(list.get(k));
+            for (int i = 0; i < builder.length(); i++) {
+                int index = alphabet.alphabetCharacterIndex(builder.charAt(i));
+                if (index + key.KEY >= alphabet.alphabetSize) {
+                    index = (index + key.KEY) - (alphabet.alphabetSize);
+                    builder.setCharAt(i, alphabet.ALPHABET[index]);
+                    continue;
+                }
+                builder.setCharAt(i, alphabet.ALPHABET[index + key.KEY]);
+            }
+            String result = builder.toString();
+            listEncryptionResult.add(result);
         }
-        return null;
+        return listEncryptionResult;
+    }
+
+
+    public void printEncryptedText(){
+        for (String str: listEncryptionResult){
+            System.out.println(str);
+        }
     }
 }
