@@ -14,8 +14,8 @@ public class DecryptTextWithKey{
             for (int i = 0; i < builder.length(); i++) {
                 int index = alphabet.alphabetCharacterIndex(builder.charAt(i));
                 if (index - Key.KEY < 0) {
-                    index = alphabet.alphabetSize - index;
-                    builder.setCharAt(i, alphabet.ALPHABET[index - 1]);
+                    index = alphabet.alphabetSize - (Key.KEY - index);
+                    builder.setCharAt(i, alphabet.ALPHABET[index]);
                     continue;
                 }
                 builder.setCharAt(i, alphabet.ALPHABET[index - Key.KEY]);
@@ -27,6 +27,8 @@ public class DecryptTextWithKey{
     }
 
     public void printEncryptedText(){
+        System.out.println();
+        System.out.println("Результат:");
         for (String str: listDecryptionResult){
             System.out.println(str);
         }
