@@ -1,6 +1,7 @@
 package ru.javarush.olegkovalchuk.project1;
 
 import ru.javarush.olegkovalchuk.files.EncryptedFile;
+import ru.javarush.olegkovalchuk.files.FileToEncrypt;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +16,7 @@ public class EncryptText {
 
     Alphabet alphabet = new Alphabet();
     Key key = new Key();
+    FileToEncrypt fileToEncrypt = new FileToEncrypt();
     EncryptedFile encryptedFile = new EncryptedFile();
 
 
@@ -33,6 +35,7 @@ public class EncryptText {
             String result = builder.toString();
             listEncryptionResult.add(result);
         }
+        writeEncryptedTextToFile();
         return listEncryptionResult;
     }
 
@@ -42,7 +45,9 @@ public class EncryptText {
             System.out.println(str);
         }
     }
-    public void writeEncryptedTextToFile(){
+
+
+    private void writeEncryptedTextToFile(){
         Path file = Path.of(EncryptedFile.nameOfEncryptedFile).toAbsolutePath();
         try {
             Files.writeString(file,"");
