@@ -5,21 +5,17 @@ import java.util.Scanner;
 
 
 public class Key {
-    public static int KEY = getKEY();
+    public static int KEY;
+
     Alphabet alphabet = new Alphabet();
-
-
-    public static int getKEY() {
-        return KEY;
-    }
 
 
     public void inputKey() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите ключ: ");
         KEY = scanner.nextInt();
-        if (KEY < 1 || KEY >= alphabet.alphabetSize){
-            throw new InvalidKeyException("Неправильное значение ключа!");
+        if (KEY < 1 || KEY >= alphabet.ALPHABET.length){
+            throw new InvalidKeyException("Значение ключа должно быть от 1 до " + alphabet.ALPHABET.length);
         }
     }
 }
