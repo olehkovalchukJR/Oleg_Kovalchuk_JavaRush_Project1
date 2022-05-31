@@ -12,15 +12,17 @@ import java.util.Scanner;
 
 
 public class FileToEncrypt {
-    public Path fileName;
     public List<String> fileContent;
     private String firstStringForBruteForce;
 
+    public Path fileName;
 
-    public void inputFileName() {
+
+    public void inputFileNameToEncrypt() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите путь к файлу: ");
-        System.out.println("Пример : /Users/yourUsername/Desktop/tex.txt");
+        System.out.println("Пример: /Users/yourUsername/Desktop/tex.txt");
+        System.out.println("Или: C:\\\\Users\\\\User\\\\Documents\\\\MyFile.txt");
         String name = scanner.nextLine();
         this.fileName = Path.of(name).toAbsolutePath();
         isFileExists(fileName);
@@ -52,7 +54,6 @@ public class FileToEncrypt {
 
 
     public void firstLineForGuessingKey(){
-        //TODO Записать в байты
         Path file = Path.of("../Oleg_Kovalchuk_JavaRush_Project1/src/ru/javarush/olegkovalchuk/files/firstLineForBruteForce.txt");
         try {
             Files.writeString(file,getFileContent().get(0));
@@ -61,7 +62,7 @@ public class FileToEncrypt {
     }
 
 
-    public String getFirstLine(){
+    public String getFirstLineForGuessingKey(){
         Path file = Path.of("../Oleg_Kovalchuk_JavaRush_Project1/src/ru/javarush/olegkovalchuk/files/firstLineForBruteForce.txt");
         try {
             firstStringForBruteForce = Files.readString(file);
