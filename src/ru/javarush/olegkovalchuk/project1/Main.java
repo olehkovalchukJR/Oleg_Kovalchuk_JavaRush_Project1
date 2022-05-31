@@ -10,10 +10,6 @@ public class Main {
     public static void main(String[] args) {
         Main menu = new Main();
         menu.mainMenu();
-
-        //TODO дописать проветку на пустоту файлов
-        //
-
         //        /Users/olehkovalchuk/Desktop/TextForProject.txt
         //        /Users/olehkovalchuk/Desktop/TextAgata.txt
     }
@@ -75,12 +71,25 @@ public class Main {
     public void optionsForDecryptionWithKey() {
         System.out.println("Расшифровка текста с помощью ключа");
         key.inputKey();
-        decryption.decryptionWithKey(encryptedFile.getFileContent());
+        try {
+            if (encryptedFile.getFileContent().size() == 0){
+                throw new IndexOutOfBoundsException();
+            }
+            decryption.decryptionWithKey(encryptedFile.getFileContent());
+        } catch (IndexOutOfBoundsException ioobe){
+            System.err.println("Невозможно расшифровать файл!" + ioobe);
+            System.err.println("Сначала зашифруйте файл!");
+        }
     }
 
 
     public void optionsForDecryptionWithBruteForce() {
         System.out.println("Расшифровка методом brute force");
-        decryption.decryptionWithBruteForce(encryptedFile.getFileContent());
+        try {
+            decryption.decryptionWithBruteForce(encryptedFile.getFileContent());
+        } catch (IndexOutOfBoundsException ioobe){
+            System.err.println("Невозможно расшифровать файл!" + ioobe);
+            System.err.println("Сначала зашифруйте файл!");
+        }
     }
 }

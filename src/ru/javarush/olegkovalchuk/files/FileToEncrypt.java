@@ -62,7 +62,7 @@ public class FileToEncrypt {
     }
 
 
-    public String getFirstLineForGuessingKey(){
+    public String getFirstLineToCheckTheKey(){
         Path file = Path.of("../Oleg_Kovalchuk_JavaRush_Project1/src/ru/javarush/olegkovalchuk/files/firstLineForBruteForce.txt");
         try {
             firstStringForBruteForce = Files.readString(file);

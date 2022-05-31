@@ -41,7 +41,7 @@ public class Decryption {
         for (int possibleKey = 1; possibleKey < alphabet.ALPHABET.length; possibleKey++) {
             Key.KEY = possibleKey;
             StringBuilder builder = new StringBuilder(list.get(0));
-            if (fileToEncrypt.getFirstLineForGuessingKey().equals(textDecryptionProcess(builder))){
+            if (fileToEncrypt.getFirstLineToCheckTheKey().equals(textDecryptionProcess(builder))){
                 for (int k = 0; k < list.size(); k++) {
                     builder = new StringBuilder(list.get(k));
                     listDecryptionResult.add(k,textDecryptionProcess(builder));
