@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-
 public class EncryptedFile {
     public static String nameOfEncryptedFile = "../Oleg_Kovalchuk_JavaRush_Project1/src/ru/javarush/olegkovalchuk/files/encryptedFile.txt";
     public List<String> fileContent;
