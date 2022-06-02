@@ -10,8 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Main menu = new Main();
         menu.mainMenu();
-        //        /Users/olehkovalchuk/Desktop/TextForProject.txt
-        //        /Users/olehkovalchuk/Desktop/TextAgata.txt
+
     }
 
 
