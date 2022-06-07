@@ -3,6 +3,7 @@ package ru.javarush.olegkovalchuk.project1;
 import ru.javarush.olegkovalchuk.files.EncryptedFile;
 import ru.javarush.olegkovalchuk.files.FileToEncrypt;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -55,7 +56,12 @@ public class Main {
         System.out.println("3.Расшифровать текста с помощью brute force (перебор всех вариантов)");
         System.out.println("0.Выход");
         System.out.print(": ");
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException ime){
+            System.err.println("Неверный ввод " + ime);
+        }
+        return 0;
     }
 
 
